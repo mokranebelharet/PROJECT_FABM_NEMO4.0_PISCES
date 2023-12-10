@@ -1,7 +1,6 @@
 **/*.sh
 **/*.nc
 **/*.exe
-**/nemo
 build
 **/ocean.output*
 **/output.*
