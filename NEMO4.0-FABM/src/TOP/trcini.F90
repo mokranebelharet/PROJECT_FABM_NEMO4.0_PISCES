@@ -174,6 +174,7 @@ CONTAINS
       IF( ln_age         )   CALL trc_ini_age        !  AGE
       ! +++>>> FABM
       IF( ln_fabm    ) THEN
+        CALL trc_nam_fabm  ! Mokrane
         CALL trc_nam_fabm_override(sn_tracer)
         CALL trc_ini_fabm       ! FABM tracers
       END IF
