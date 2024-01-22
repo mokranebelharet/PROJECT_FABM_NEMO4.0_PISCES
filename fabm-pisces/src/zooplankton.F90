@@ -17,11 +17,11 @@ module pisces_zooplankton
       type (type_state_variable_id) :: id_po4, id_no3, id_nh4, id_doc, id_dic, id_tal, id_poc_waste, id_pof_waste, id_pos_waste, id_cal
       type (type_state_variable_id) :: id_conspoc, id_consgoc, id_prodpoc, id_poc_waste_prod
       type (type_dependency_id)     :: id_tem, id_nitrfac, id_quotan, id_quotad, id_xfracal, id_wspoc, id_wsgoc
-      type (type_diagnostic_variable_id) :: id_zfezoo, id_zgrazing, id_zfrac, id_pcal
+      type (type_diagnostic_variable_id) :: id_zfezoo, id_zgrazing, id_zfrac, id_pcal, id_grazp , id_grazd,id_quotan_diag
 
       real(rk) :: grazrat, logbz, resrat, xkmort, mzrat, xthresh, xkgraz, ferat, epsher, epshermin, unass, sigma, part, grazflux
       real(rk) :: xthreshdia, xthreshphy, xthreshzoo, xthreshpoc
-      real(rk) :: xprefn, xprefz, xprefd, xprefc, xsizedia, xdismort, phlim
+      real(rk) :: xprefn, xprefz, xprefd, xprefc, xsizedia, xdismort,phlim, xgrazcal
    contains
       procedure :: initialize
       procedure :: do
@@ -63,6 +63,8 @@ contains
       call self%get_parameter(self%xsizedia, 'xsizedia', 'mol C L-1', 'maximum accessible diatom biomass (above this threshold cells are too large)', default=1e-6_rk, minimum=0._rk)
       call self%get_parameter(self%xdismort, 'xdismort', '1', 'fraction of quadratic mortality directed to nutrient pools', default=( 1._rk - self%epsher - self%unass ) /( 1._rk - self%epsher ), minimum=0._rk, maximum=1._rk)
       call self%get_parameter(self%phlim, 'phlim', '1', 'relative grazing on nanophytoplankton if cells are small', minimum=0._rk, maximum=1._rk)
+      ! ----- Mokrane ----------------
+      call self%get_parameter(self%xgrazcal, 'xgrazcal','1','relative fraction of grazcal', default = 1._rk, minimum=0._rk, maximum=1._rk)
 
       call self%register_state_variable(self%id_c, 'c', 'mol C L-1', 'carbon', minimum=0.0_rk)
       call self%add_to_aggregate_variable(standard_variables%total_carbon, self%id_c, scale_factor=1e6_rk)
@@ -75,6 +77,11 @@ contains
       call self%register_diagnostic_variable(self%id_zfrac, 'zfrac', 'mol C m-3 s-1', 'fractionation of large POM')
       call self%register_diagnostic_variable(self%id_pcal, 'pcal', 'mol m-3 s-1', 'calcite production')
       call self%add_to_aggregate_variable(calcite_production, self%id_pcal)
+
+      ! Mokrane : diagnostic variables for grazing 
+      call self%register_diagnostic_variable(self%id_grazp , 'grazp', 'mol C m-3s-1', 'phytopk grazing')
+      call self%register_diagnostic_variable(self%id_grazd , 'grazd', 'mol C m-3s-1', 'diatoms grazing')
+      call self%register_diagnostic_variable(self%id_quotan_diag,'quotan_diag', '1' , 'quotan diagnostic')
 
       call self%register_state_dependency(self%id_no3, 'no3', 'mol C L-1', 'nitrate')
       call self%register_state_dependency(self%id_nh4, 'nh4', 'mol C L-1', 'ammonium')
@@ -157,6 +164,8 @@ contains
       real(rk) :: zgrazffeg, zgrazfffg, zgrazffep, zgrazfffp, zproport, zratio, zratio2, zfrac, zfracfe
       real(rk) :: zgrasrat, zgrasratn, zepshert, zbeta, zepsherf, zepsherq, zepsherv, zgrafer, zgrarem, zgrarsig, zmortz, zmortzgoc
       real(rk) :: zprcaca, zfracal, zgrazcal, cal
+      !real(rk), parameter :: xstep = 0.0416666_rk
+
 
       _LOOP_BEGIN_
          _GET_(self%id_c, c)
@@ -212,6 +221,8 @@ contains
          zcompaph  = zcompaph &
             &      * MIN(1._rk, MAX( self%phlim, ( quotan - 0.2_rk) / 0.3_rk ) )
 
+         _SET_DIAGNOSTIC_(self%id_quotan_diag, quotan)
+
          ! Grazing
          ! ----------------------------------
          zfood     = self%xprefn * zcompaph + self%xprefc * zcompapoc + self%xprefd * zcompadi + self%xprefz * zcompaz   ! Jorn: 1st term in Eq 26a
@@ -219,7 +230,6 @@ contains
          zdenom    = zfoodlim / ( self%xkgraz + zfoodlim )
          zdenom2   = zdenom / ( zfood + rtrn )
          zgraze    = self%grazrat * xstep * tgfunc2 * c * (1. - nitrfac)    ! Jorn: compared to paper (Eq 26a), (1._rk - nitrfac) factor seems to have been added
-
          zgrazp    = zgraze  * self%xprefn * zcompaph  * zdenom2     ! Jorn: ingestion of nanophytoplankton carbon
          zgrazpoc  = zgraze  * self%xprefc * zcompapoc * zdenom2     ! Jorn: ingestion of POC
          zgrazd    = zgraze  * self%xprefd * zcompadi  * zdenom2     ! Jorn: ingestion of diatom carbon
@@ -318,7 +328,9 @@ contains
 
          ! Prey losses
          _ADD_SOURCE_(self%id_phy, - zgrazp)
-         _ADD_SOURCE_(self%id_dia, - zgrazd)
+         _SET_DIAGNOSTIC_(self%id_grazp ,zgrazp/xstep )
+         _ADD_SOURCE_(self%id_dia, - zgrazd) 
+         _SET_DIAGNOSTIC_(self%id_grazd ,zgrazd/xstep )
          _ADD_SOURCE_(self%id_zoo, - zgrazz)
          _ADD_SOURCE_(self%id_nch, - zgrazp  * nch / (phy + rtrn))
          _ADD_SOURCE_(self%id_dch, - zgrazd * dch / (dia + rtrn))
@@ -327,7 +339,7 @@ contains
          _ADD_SOURCE_(self%id_dfe, - zgrazsf)
          _ADD_SOURCE_(self%id_poc, - zgrazpoc - zgrazffep)
          _ADD_SOURCE_(self%id_sfe, - zgrazpof - zgrazfffp)
-         _ADD_SOURCE_(self%id_goc,            - zgrazffeg  + self%unass * (zmortzgoc + zgraztotc) )! Modified by Mokrane by adding : self%unass * (zmortzgoc + zgraztotc)
+         _ADD_SOURCE_(self%id_goc,            - zgrazffeg) !   + self%unass * (zmortzgoc + zgraztotc) )! Modified by Mokrane by adding : self%unass * (zmortzgoc + zgraztotc)
          _ADD_SOURCE_(self%id_bfe,            - zgrazfffg)
          _ADD_SOURCE_(self%id_conspoc, - zgrazpoc - zgrazffep)
          _ADD_SOURCE_(self%id_consgoc,            - zgrazffeg)
@@ -358,8 +370,8 @@ contains
          !
          zprcaca = self%part * zprcaca
          _ADD_SOURCE_(self%id_dic, + zgrazcal - zprcaca)
-         _ADD_SOURCE_(self%id_tal, 2._rk * (zgrazcal - zprcaca))   ! Jorn: change in sign of zgrazcal compared to p4zmeso, confirmed necessary by OA 2021-07-15
-         _ADD_SOURCE_(self%id_cal, - zgrazcal + zprcaca)
+         _ADD_SOURCE_(self%id_tal, 2._rk * (self%xgrazcal * zgrazcal - zprcaca))   ! Jorn: change in sign of zgrazcal compared to p4zmeso, confirmed necessary by OA 2021-07-15
+         _ADD_SOURCE_(self%id_cal, - self%xgrazcal * zgrazcal + zprcaca)
          _SET_DIAGNOSTIC_(self%id_pcal, zprcaca * 1e3_rk)
       _LOOP_END_
    end subroutine

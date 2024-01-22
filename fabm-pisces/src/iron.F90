@@ -82,6 +82,7 @@ contains
       real(rk) :: ztotlig, zTL1, zkeq, zfesatur, ztfe, zFe3, zFeL1, zdust, zhplus, fe3sol, zfeequi, zfecoll, precip, ztrc
       real(rk) :: zxlam, zlam1a, zlam1b, zscave, zdenom1, zdenom2, zlamfac, zdep, zcoag, zaggdfea, zaggdfeb
       real(rk) :: etot_ndcy, fr_i, zlight, zsoufer
+      !real(rk), parameter :: xstep = 0.0416666_rk
 
       _LOOP_BEGIN_
          _GET_(self%id_fer, fer)

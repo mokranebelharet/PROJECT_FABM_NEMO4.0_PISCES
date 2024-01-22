@@ -13,6 +13,9 @@
 !-----------------------------------------------------------------------
 &nampisbio     !   biological parameters
 !-----------------------------------------------------------------------
+   wsbio      =  0.
+   wsbio2     =  0.      ! Big particles sinking speed
+   wsbio2max  =  0.      ! Big particles maximum sinking speed
 /
 !-----------------------------------------------------------------------
 &namp4zlim     !   parameters for nutrient limitations for PISCES std  - ln_p4z

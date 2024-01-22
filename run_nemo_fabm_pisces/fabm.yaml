@@ -16,7 +16,7 @@ instances:
     parameters:
       has_nitrogen: true
     initialization:
-      c: 0.0013115e-6
+      c: 1.e-8
   po4:
     long_name: phosphate
     model: pisces/tracer
@@ -51,7 +51,7 @@ instances:
     long_name: small particulate organic matter
     model: pisces/pom
     parameters:
-      ws: 2.0
+      ws: 0. #2.0
       solgoc: 0.0
       mlvar: true
     initialization:
@@ -67,7 +67,7 @@ instances:
     parameters:
       has_silicon: true
       has_calcite: true
-      ws: 50.0
+      ws: 0. #50.0
     initialization:
       c: 1.e-8
       fe: 5.e-14
@@ -98,6 +98,7 @@ instances:
       biron: fer/fe
       doc: dom/c
       oxy: oxy/O2
+      fer: fer/fe
       heup_01: optics/heup_01
       pe1: optics/pe1
       pe2: optics/pe2
@@ -107,7 +108,7 @@ instances:
       pom: pom
       gom: gom
     initialization:
-      c: 1.e-8
+      c:  1.e-8
       ch: 0.0021818182e-6
       fe: 5.e-14
   dia:
@@ -122,7 +123,8 @@ instances:
       concno3: 3.e-6
       concfer: 3.e-9
       chlcm: 0.05
-      xmort: 1.e-8
+      xmort: 1.e-9
+      wchlm: 0.03
     coupling:
       no3: no3/c
       nh4: nh4/c
@@ -131,6 +133,7 @@ instances:
       biron: fer/fe
       doc: dom/c
       oxy: oxy/O2
+      fer: fer/fe
       heup_01: optics/heup_01
       pe1: optics/pe1
       pe2: optics/pe2
@@ -140,7 +143,7 @@ instances:
       pom: pom
       gom: gom
     initialization:
-      c: 1.e-8
+      c:  1.e-8
       ch: 0.0021818182e-6
       si: 0.15e-8
       fe: 5.e-14
@@ -165,16 +168,17 @@ instances:
       epsher: 0.3
       epshermin: 0.3
       xprefn: 1.
-      xprefd: 0.5
+      xprefd: 0.6
       xprefc: 0.1
       xprefz: 0
       xdismort: 0
       grazrat: 3
       grazflux: 0
-      phlim: 0
+      phlim: 1
       mzrat: 0.004
       resrat: 0.03
       part: 0.5
+      xgrazcal: 0. #new parameter by Mokrane
     initialization:
       c: 1.e-8
     coupling:
@@ -203,12 +207,12 @@ instances:
       xprefc: 0.3
       xprefz: 1
       grazrat: 0.75
-      grazflux: 3e3
-      phlim: 1
+      grazflux: 3000.
+      phlim: 0
       mzrat: 0.03
       resrat: 0.005
       part: 0.75
-      xsizedia: 0
+      xsizedia: 10.
     initialization:
       c: 1.e-8
     coupling:

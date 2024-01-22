@@ -187,7 +187,7 @@ DEP::nemo__p4zlim.F90                   p4zlim::iom::USE::lib_mpp::USE::oce_trc:
 DEP::nemo__p4zlys.F90                   p4zlys::iom::USE::oce_trc::USE::p4zche::USE::prtctl_trc::USE::sms_pisces::USE::trc::USE
 DEP::nemo__p4zmeso.F90                  p4zmeso::iom::USE::oce_trc::USE::p4zprod::USE::prtctl_trc::USE::sms_pisces::USE::trc::USE
 DEP::nemo__p4zmicro.F90                 p4zmicro::iom::USE::oce_trc::USE::p4zlim::USE::p4zprod::USE::prtctl_trc::USE::sms_pisces::USE::trc::USE
-DEP::nemo__p4zmort.F90                  p4zmort::oce_trc::USE::p4zlim::USE::p4zprod::USE::prtctl_trc::USE::sms_pisces::USE::trc::USE
+DEP::nemo__p4zmort.F90                  p4zmort::iom::USE::oce_trc::USE::p4zlim::USE::p4zprod::USE::prtctl_trc::USE::sms_pisces::USE::trc::USE
 DEP::nemo__p4zopt.F90                   p4zopt::fldread::USE::iom::USE::oce_trc::USE::prtctl_trc::USE::sms_pisces::USE::trc::USE
 DEP::nemo__p4zpoc.F90                   p4zpoc::iom::USE::oce_trc::USE::prtctl_trc::USE::sms_pisces::USE::trc::USE
 DEP::nemo__p4zprod.F90                  p4zprod::iom::USE::oce_trc::USE::p4zlim::USE::prtctl_trc::USE::sms_pisces::USE::trc::USE
@@ -330,7 +330,7 @@ DEP::nemo__trcrad.F90                   trcrad::lib_fortran::USE::oce_trc::USE::
 DEP::nemo__trcrst.F90                   trcrst::daymod::USE::iom::USE::lib_mpp::USE::oce_trc::USE::trc::USE::trcrst_fabm::USE
 DEP::nemo__trcrst_fabm.F90              trcrst_fabm::iom::USE::oce_trc::USE::par_fabm::USE::par_trc::USE::st2D_fabm::USE::trc::USE::trcsms_fabm::USE
 DEP::nemo__trcsbc.F90                   trcsbc::iom::USE::oce_trc::USE::prtctl_trc::USE::trc::USE::trd_oce::USE::trdtra::USE
-DEP::nemo__trcsink.F90                  trcsink::lib_mpp::USE::oce_trc::USE::trc::USE
+DEP::nemo__trcsink.F90                  trcsink::iom::USE::lib_mpp::USE::oce_trc::USE::trc::USE
 DEP::nemo__trcsms.F90                   trcsms::oce_trc::USE::prtctl_trc::USE::trc::USE::trcsms_age::USE::trcsms_c14::USE::trcsms_cfc::USE::trcsms_fabm::USE::trcsms_my_trc::USE::trcsms_pisces::USE
 DEP::nemo__trcsms_age.F90               trcsms_age::oce_trc::USE::trc::USE::trd_oce::USE::trdtrc::USE
 DEP::nemo__trcsms_c14.F90               trcsms_c14::iom::USE::oce_trc::USE::par_trc::USE::sms_c14::USE::trc::USE::trcatm_c14::USE::trd_oce::USE::trdtrc::USE

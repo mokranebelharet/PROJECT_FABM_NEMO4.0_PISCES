@@ -80,7 +80,7 @@
 
        <file id="file6" name_suffix="_diad_T" description="additional lobster diagnostics" >
 
-          <field field_ref="optics_etot"    name="PAR" />
+          <!--field field_ref="optics_etot"    name="PAR" />
           <field field_ref="optics_etot_ndcy"   name="etot_ndcy" />
           <field field_ref="turbocline_hmld" name="hmld" />
           <field field_ref="shear_xdiss"     name="shear_rate" />
@@ -95,7 +95,36 @@
           <field field_ref="optics_Tchl"   name="Tchl"/>
           <field field_ref="turbocline_davt"   name="avt" />
           <field field_ref="tra_before"    name = "tra_before" />
-          <field field_ref="tra_after"    name = "tra_after" />
+          <field field_ref="tra_after"    name = "tra_after" /-->
+
+          <!--field field_ref="gom_silica_dissolution_remin" name = "zosil" > gom_silica_dissolution_remin * 1e6 </field>
+          <field field_ref="gom_silica_dissolution_zsiremin" name = "zsiremin" />
+          <field field_ref="gom_silica_dissolution_zfacsib"   name = "zfacsib" />
+          <field field_ref="gom_silica_dissolution_zfacsi"   name = "zfacsi" />
+          <field field_ref="gom_silica_dissolution_znusil"   name = "znusil" /-->
+          
+          <!--field field_ref="carbonate_zomegaca"   name = "zomegaca" />
+          <field field_ref="phy_xfracal"   name = "xfracal" />
+          <field field_ref="dia_zrespp"   name="zresp"/>
+          <field field_ref="dia_ztortp"   name="ztortp" />
+          <field field_ref="dia_xksi_diag"   name="xksi" /-->
+
+          <field field_ref="dia_Mu"    name="MuD" />
+          <field field_ref="dia_PPPHY"  name="TPP_dia" />
+
+          <!--field field_ref="dia_LN"  name="zlim1" />
+          <field field_ref="dia_LP"  name="zlim2" />
+          <field field_ref="dia_LSi"  name="zlim3" />
+          <field field_ref="dia_LFe"  name="zlim4" /-->
+
+          <!--field field_ref="dia_PFe"  name="PFeD" /-->
+
+          <field field_ref="zoo_grazp" name="graz1p" />
+          <field field_ref="zoo_grazd" name="graz1d" />
+          <field field_ref="mes_grazp" name="graz2p" />
+          <field field_ref="mes_grazd" name="graz2d" />
+          
+          <!--field field_ref="mes_quotan_diag" name="quotan" /-->
 
        </file>
 	

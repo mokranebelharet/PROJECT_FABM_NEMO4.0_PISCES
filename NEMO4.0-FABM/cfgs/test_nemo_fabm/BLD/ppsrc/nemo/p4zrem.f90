@@ -50,8 +50,7 @@ MODULE p4zrem
    REAL(wp), PUBLIC ::   feratb     !: Fe/C quota in bacteria
    REAL(wp), PUBLIC ::   xkferb     !: Half-saturation constant for bacteria Fe/C
 
-   REAL(wp), PUBLIC, ALLOCATABLE, SAVE, DIMENSION(:,:,:) ::   denitr   !: denitrification array
-
+   REAL(wp), PUBLIC, ALLOCATABLE, SAVE, DIMENSION(:,:,:) ::   denitr    !: denitrification array
    !!----------------------------------------------------------------------
    !! NEMO/TOP 4.0 , NEMO Consortium (2018)
    !! $Id: p4zrem.F90 12276 2019-12-20 11:14:26Z cetlod $ 
@@ -77,7 +76,7 @@ CONTAINS
       REAL(wp) ::   zosil, ztem, zdenitnh4, zolimic, zolimin, zolimip, zdenitrn, zdenitrp
       CHARACTER (len=25) :: charout
       REAL(wp), DIMENSION(jpi,jpj    ) :: ztempbac
-      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zdepbac, zolimi, zdepprod, zfacsi, zfacsib, zdepeff, zfebact
+      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zdepbac, zolimi, zdepprod, zfacsi, zfacsib, zdepeff, zfebact, zsiremin_o, zosil_o, znusil_o
       !!---------------------------------------------------------------------
       !
       IF( ln_timing )   CALL timing_start('p4z_rem')
@@ -270,12 +269,26 @@ CONTAINS
                ENDIF
                zsiremin = ( xsiremlab * zfacsi(ji,jj,jk) + xsirem * ( 1. - zfacsi(ji,jj,jk) ) ) * xstep * znusil
                zosil    = zsiremin * trb(ji,jj,jk,jpgsi)
+
+               zsiremin_o(ji,jj,jk) = zsiremin
+               zosil_o(ji,jj,jk) = zosil
+               znusil_o(ji,jj,jk) = znusil
                !
                tra(ji,jj,jk,jpgsi) = tra(ji,jj,jk,jpgsi) - zosil
                tra(ji,jj,jk,jpsil) = tra(ji,jj,jk,jpsil) + zosil
             END DO
          END DO
       END DO
+
+      
+       !IF(lwp) WRITE(numout,*) '    xstep_rem = ', xstep
+         
+
+      CALL iom_put("zsiremin", zsiremin_o(:,:,:) * tmask(:,:,:))
+      CALL iom_put("zosil", zosil_o(:,:,:) * tmask(:,:,:))
+      CALL iom_put("zfacsi", zfacsi(:,:,:) * tmask(:,:,:))
+      CALL iom_put("zfacsib", zfacsib(:,:,:) * tmask(:,:,:))
+      CALL iom_put("znusil", znusil_o(:,:,:) * tmask(:,:,:))
 
       IF(ln_ctl)   THEN  ! print mean trends (used for debugging)
          WRITE(charout, FMT="('rem3')")

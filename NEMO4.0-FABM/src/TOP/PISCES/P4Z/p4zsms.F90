@@ -87,6 +87,7 @@ CONTAINS
       IF( ln_pisdmp .AND. MOD( kt - nn_dttrc, nn_pisdmp ) == 0 )   CALL p4z_dmp( kt )      ! Relaxation of some tracers
       !
       rfact = r2dttrc
+
       !
       IF( ( ln_top_euler .AND. kt == nittrc000 )  .OR. ( .NOT.ln_top_euler .AND. kt <= nittrc000 + nn_dttrc ) ) THEN
          rfactr  = 1. / rfact
@@ -99,6 +100,8 @@ CONTAINS
          IF(lwp) write(numout,*) '    PISCES  Biology time step    rfact2 = ', rfact2
          IF(lwp) WRITE(numout,*)
       ENDIF
+
+ !     IF(lwp) WRITE(numout,*) '    Passive Tracer  time step    rfact  = ', rfact, ' rdt = ', rdt, 'xstep = ', xstep
 
       IF( ( neuler == 0 .AND. kt == nittrc000 ) .OR. ln_top_euler ) THEN
          DO jn = jp_pcs0, jp_pcs1              !   SMS on tracer without Asselin time-filter
@@ -124,7 +127,11 @@ CONTAINS
          CALL p4z_sed( kt, jnt )   ! Surface and Bottom boundary conditions
          CALL p4z_flx( kt, jnt )   ! Compute surface fluxes
          !
+        
+
          xnegtr(:,:,:) = 1.e0
+
+
          DO jn = jp_pcs0, jp_pcs1
             DO jk = 1, jpk
                DO jj = 1, jpj
@@ -139,9 +146,11 @@ CONTAINS
          END DO
          !                                ! where at least 1 tracer concentration becomes negative
          !                                ! 
+
          DO jn = jp_pcs0, jp_pcs1
            trb(:,:,:,jn) = trb(:,:,:,jn) + xnegtr(:,:,:) * tra(:,:,:,jn)
          END DO
+
         
         !
         IF(  iom_use( 'INTdtAlk' ) .OR. iom_use( 'INTdtDIC' ) .OR. iom_use( 'INTdtFer' ) .OR.  &

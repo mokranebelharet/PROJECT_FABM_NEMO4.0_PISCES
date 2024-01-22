@@ -282,10 +282,13 @@ CONTAINS
       !!
       !! ** Method  : - Read the namcfc namelist and check the parameter values
       !!----------------------------------------------------------------------
+
+
 #if defined key_git_version
       TYPE (type_version),POINTER :: version
 #endif
       INTEGER :: jn
+
 
       IF(lwp) WRITE(numout,*)
       IF(lwp) WRITE(numout,*) ' trc_ini_fabm: initialisation of FABM model'

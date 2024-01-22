@@ -80,7 +80,7 @@ CONTAINS
       REAL(wp) :: zrespz, ztortz, zgrasrat, zgrasratn
       REAL(wp) :: zgrazp, zgrazm, zgrazsd
       REAL(wp) :: zgrazmf, zgrazsf, zgrazpf
-      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zgrazing, zfezoo, zzligprod
+      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zgrazing, zfezoo, zzligprod, grazp, grazd
       CHARACTER (len=25) :: charout
       !!---------------------------------------------------------------------
       !
@@ -194,11 +194,19 @@ CONTAINS
                tra(ji,jj,jk,jpdic) = tra(ji,jj,jk,jpdic) - zprcaca
                tra(ji,jj,jk,jptal) = tra(ji,jj,jk,jptal) - 2. * zprcaca
                tra(ji,jj,jk,jpcal) = tra(ji,jj,jk,jpcal) + zprcaca
+
+               ! Mokrane : grazing for diagnostics
+               grazp(ji,jj,jk) = zgrazp/xstep
+               grazd(ji,jj,jk) = zgrazsd/xstep
             END DO
          END DO
       END DO
       !
       IF( lk_iomput .AND. knt == nrdttrc ) THEN
+
+       CALL iom_put( "graz1p" , grazp(:,:,:) * tmask(:,:,:)) !-- Mokrane -- 
+       CALL iom_put( "graz1d" , grazd(:,:,:) * tmask(:,:,:)) !-- Mokrane --
+       
        IF( iom_use("GRAZ1") ) THEN  !   Total grazing of phyto by zooplankton
            zgrazing(:,:,jpk) = 0._wp   ; CALL iom_put( "GRAZ1" , zgrazing(:,:,:) * 1.e+3  * rfact2r * tmask(:,:,:) ) 
          ENDIF

@@ -14,6 +14,7 @@ MODULE trcsink
    USE oce_trc         !  shared variables between ocean and passive tracers
    USE trc             !  passive tracers common variables 
    USE lib_mpp
+   USE iom             ! I/O manager
 
    IMPLICIT NONE
    PRIVATE
@@ -51,7 +52,7 @@ CONTAINS
       INTEGER  ::   ji, jj, jk
       INTEGER, DIMENSION(jpi, jpj) ::   iiter
       REAL(wp) ::   zfact, zwsmax, zmax
-      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zwsink
+      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zwsink, zwsmax_
       !!---------------------------------------------------------------------
       !
       IF( ln_timing )   CALL timing_start('trc_sink')
@@ -89,13 +90,17 @@ CONTAINS
                IF( tmask(ji,jj,jk) == 1.0 ) THEN
                  zwsmax = 0.5 * e3t_n(ji,jj,jk) * rday / rsfact
                  zwsink(ji,jj,jk) = MIN( pwsink(ji,jj,jk), zwsmax * REAL( iiter(ji,jj), wp ) )
+                 zwsmax_(ji,jj,jk) = zwsmax
                ELSE
                  ! provide a default value so there is no use of undefinite value in trc_sink2 for zwsink2 initialization
                  zwsink(ji,jj,jk) = 0.
+                 zwsmax_(ji,jj,jk) = 0.
                ENDIF
             END DO
          END DO
       END DO
+
+      !CALL iom_put("zwsink", pwsink(:,:,:) * tmask(:,:,:))
 
       !  Initializa to zero all the sinking arrays 
       !  -----------------------------------------

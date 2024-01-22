@@ -46,7 +46,7 @@
   <field id="fer_fe_w" long_name="iron concentration in iron units vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="dom_c_sms" long_name="dissolved organic matter concentration in carbon units sources-sinks" unit="mol C L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="dom_c_w" long_name="dissolved organic matter concentration in carbon units vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
-  <field id="pom_ws" long_name="small particulate organic matter sinking velocity" unit="m d-1" default_value="0.200E+01" grid_ref="grid_T_3D" />
+  <field id="pom_ws" long_name="small particulate organic matter sinking velocity" unit="m d-1" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="pom_c_sms" long_name="small particulate organic matter carbon concentration sources-sinks" unit="mol C L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="pom_c_w" long_name="small particulate organic matter carbon concentration vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="pom_fe_sms" long_name="small particulate organic matter iron concentration sources-sinks" unit="mol Fe L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
@@ -88,7 +88,7 @@
   <field id="pom_c_prod13" long_name="small particulate organic matter produced particulate organic carbon in lability class 13" unit="mol C L-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="pom_c_prod14" long_name="small particulate organic matter produced particulate organic carbon in lability class 14" unit="mol C L-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="pom_c_prod15" long_name="small particulate organic matter produced particulate organic carbon in lability class 15" unit="mol C L-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
-  <field id="gom_ws" long_name="large particulate organic matter sinking velocity" unit="m d-1" default_value="0.500E+02" grid_ref="grid_T_3D" />
+  <field id="gom_ws" long_name="large particulate organic matter sinking velocity" unit="m d-1" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="gom_c_sms" long_name="large particulate organic matter carbon concentration sources-sinks" unit="mol C L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="gom_c_w" long_name="large particulate organic matter carbon concentration vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="gom_fe_sms" long_name="large particulate organic matter iron concentration sources-sinks" unit="mol Fe L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
@@ -105,6 +105,10 @@
   <field id="gom_si_sms" long_name="large particulate organic matter silicon concentration sources-sinks" unit="mol Si L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="gom_si_w" long_name="large particulate organic matter silicon concentration vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="gom_silica_dissolution_remin" long_name="large particulate organic matter silica_dissolution rate" unit="mol Si L-1 s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="gom_silica_dissolution_zsiremin" long_name="large particulate organic matter silica_dissolution Lambda psi star" unit="d-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="gom_silica_dissolution_zfacsib" long_name="large particulate organic matter silica_dissolution proportion of the most labile phase in PSi" unit="dimensionless" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="gom_silica_dissolution_zfacsi" long_name="large particulate organic matter silica_dissolution proportion" unit="dimensionless" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="gom_silica_dissolution_znusil" long_name="large particulate organic matter silica_dissolution znusil" unit="dimensionless" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="gom_silica_dissolution_gsi_sms" long_name="large particulate organic matter silica_dissolution particulate organic silicon sources-sinks" unit="mol Si L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="gom_silica_dissolution_gsi_w" long_name="large particulate organic matter silica_dissolution particulate organic silicon vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="gom_silica_dissolution_sil_sms" long_name="large particulate organic matter silica_dissolution silicate sources-sinks" unit="mol Si L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
@@ -221,6 +225,8 @@
   <field id="phy_alkalinity_expressed_as_mole_equivalent_w" long_name="nanophytoplankton alkalinity_expressed_as_mole_equivalent vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="phy_oxy_sms" long_name="nanophytoplankton oxygen sources-sinks" unit="mol O2 L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="phy_oxy_w" long_name="nanophytoplankton oxygen vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="phy_fer_sms" long_name="nanophytoplankton iron sources-sinks" unit="mol Fe L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="phy_fer_w" long_name="nanophytoplankton iron vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="phy_quota" long_name="nanophytoplankton proxy of the N/C ratio" unit="mol N (mol C)-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="phy_LN" long_name="nanophytoplankton nitrogen limitation term" unit="-" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="phy_LP" long_name="nanophytoplankton phosphorus limitation term" unit="-" default_value="-.200E+21" grid_ref="grid_T_3D" />
@@ -278,6 +284,9 @@
   <field id="dia_alkalinity_expressed_as_mole_equivalent_w" long_name="diatoms alkalinity_expressed_as_mole_equivalent vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="dia_oxy_sms" long_name="diatoms oxygen sources-sinks" unit="mol O2 L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="dia_oxy_w" long_name="diatoms oxygen vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="dia_fer_sms" long_name="diatoms iron sources-sinks" unit="mol Fe L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="dia_fer_w" long_name="diatoms iron vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="dia_xksi_diag" long_name="diatoms instantaneous silicate half-saturation constant" unit="mol Si L-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="dia_quota" long_name="diatoms proxy of the N/C ratio" unit="mol N (mol C)-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="dia_LN" long_name="diatoms nitrogen limitation term" unit="-" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="dia_LP" long_name="diatoms phosphorus limitation term" unit="-" default_value="-.200E+21" grid_ref="grid_T_3D" />
@@ -292,6 +301,8 @@
   <field id="dia_Mu" long_name="diatoms realized growth rate" unit="s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="dia_Llight" long_name="diatoms light limitation term" unit="1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="dia_pcal" long_name="diatoms calcite production" unit="mol m-3 s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="dia_zrespp" long_name="diatoms mort_1" unit="1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="dia_ztortp" long_name="diatoms mort_2" unit="1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="carbonate_DIC_sms" long_name="carbonate dissolved inorganic carbon concentration sources-sinks" unit="mol C L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="carbonate_DIC_w" long_name="carbonate dissolved inorganic carbon concentration vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="carbonate_Alkalini_sms" long_name="carbonate alkalinity concentration sources-sinks" unit="mol L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
@@ -315,6 +326,9 @@
   <field id="zoo_graz" long_name="microzooplankton grazing" unit="mol C m-3 s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="zoo_zfrac" long_name="microzooplankton fractionation of large POM" unit="mol C m-3 s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="zoo_pcal" long_name="microzooplankton calcite production" unit="mol m-3 s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="zoo_grazp" long_name="microzooplankton phytopk grazing" unit="mol C m-3s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="zoo_grazd" long_name="microzooplankton diatoms grazing" unit="mol C m-3s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="zoo_quotan_diag" long_name="microzooplankton quotan diagnostic" unit="1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="zoo_no3_sms" long_name="microzooplankton nitrate sources-sinks" unit="mol C L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="zoo_no3_w" long_name="microzooplankton nitrate vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="zoo_nh4_sms" long_name="microzooplankton ammonium sources-sinks" unit="mol C L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
@@ -379,6 +393,9 @@
   <field id="mes_graz" long_name="mesozooplankton grazing" unit="mol C m-3 s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="mes_zfrac" long_name="mesozooplankton fractionation of large POM" unit="mol C m-3 s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="mes_pcal" long_name="mesozooplankton calcite production" unit="mol m-3 s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="mes_grazp" long_name="mesozooplankton phytopk grazing" unit="mol C m-3s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="mes_grazd" long_name="mesozooplankton diatoms grazing" unit="mol C m-3s-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="mes_quotan_diag" long_name="mesozooplankton quotan diagnostic" unit="1" default_value="-.200E+21" grid_ref="grid_T_3D" />
   <field id="mes_no3_sms" long_name="mesozooplankton nitrate sources-sinks" unit="mol C L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="mes_no3_w" long_name="mesozooplankton nitrate vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
   <field id="mes_nh4_sms" long_name="mesozooplankton ammonium sources-sinks" unit="mol C L-1/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
@@ -773,6 +790,8 @@
   <field id="phy_alkalinity_expressed_as_mole_equivalent_bfl" long_name="nanophytoplankton alkalinity_expressed_as_mole_equivalent bottom flux" unit="mmol m-3*m/s" default_value="0.000E+00" />
   <field id="phy_oxy_sfl" long_name="nanophytoplankton oxygen surface flux" unit="mol O2 L-1*m/s" default_value="0.000E+00" />
   <field id="phy_oxy_bfl" long_name="nanophytoplankton oxygen bottom flux" unit="mol O2 L-1*m/s" default_value="0.000E+00" />
+  <field id="phy_fer_sfl" long_name="nanophytoplankton iron surface flux" unit="mol Fe L-1*m/s" default_value="0.000E+00" />
+  <field id="phy_fer_bfl" long_name="nanophytoplankton iron bottom flux" unit="mol Fe L-1*m/s" default_value="0.000E+00" />
   <field id="dia_silicate_half_saturation_xksi" long_name="diatoms silicate_half_saturation silicate half saturation" unit="mol Si L-1" default_value="-.200E+21" />
   <field id="dia_par_etotm" long_name="diatoms par daily mean PAR averaged over mixed layer (sum over all wavebands, weighted by absorption coefficients)" unit="W m-2" default_value="-.200E+21" />
   <field id="dia_c_sfl" long_name="diatoms carbon surface flux" unit="mol C L-1*m/s" default_value="0.000E+00" />
@@ -817,6 +836,8 @@
   <field id="dia_alkalinity_expressed_as_mole_equivalent_bfl" long_name="diatoms alkalinity_expressed_as_mole_equivalent bottom flux" unit="mmol m-3*m/s" default_value="0.000E+00" />
   <field id="dia_oxy_sfl" long_name="diatoms oxygen surface flux" unit="mol O2 L-1*m/s" default_value="0.000E+00" />
   <field id="dia_oxy_bfl" long_name="diatoms oxygen bottom flux" unit="mol O2 L-1*m/s" default_value="0.000E+00" />
+  <field id="dia_fer_sfl" long_name="diatoms iron surface flux" unit="mol Fe L-1*m/s" default_value="0.000E+00" />
+  <field id="dia_fer_bfl" long_name="diatoms iron bottom flux" unit="mol Fe L-1*m/s" default_value="0.000E+00" />
   <field id="carbonate_DIC_sfl" long_name="carbonate dissolved inorganic carbon concentration surface flux" unit="mol C L-1*m/s" default_value="0.000E+00" />
   <field id="carbonate_DIC_bfl" long_name="carbonate dissolved inorganic carbon concentration bottom flux" unit="mol C L-1*m/s" default_value="0.000E+00" />
   <field id="carbonate_Alkalini_sfl" long_name="carbonate alkalinity concentration surface flux" unit="mol L-1*m/s" default_value="0.000E+00" />
@@ -1265,6 +1286,10 @@
   <field id="gom_si_sms_VINT" long_name="depth-integrated large particulate organic matter silicon concentration sources-sinks" unit="mol Si L-1/s*m" default_value="0.0" />
   <field id="gom_si_w_VINT" long_name="depth-integrated large particulate organic matter silicon concentration vertical velocity" unit="m/s*m" default_value="0.0" />
   <field id="gom_silica_dissolution_remin_VINT" long_name="depth-integrated large particulate organic matter silica_dissolution rate" unit="mol Si L-1 s-1*m" default_value="0.0" />
+  <field id="gom_silica_dissolution_zsiremin_VINT" long_name="depth-integrated large particulate organic matter silica_dissolution Lambda psi star" unit="d-1*m" default_value="0.0" />
+  <field id="gom_silica_dissolution_zfacsib_VINT" long_name="depth-integrated large particulate organic matter silica_dissolution proportion of the most labile phase in PSi" unit="dimensionless*m" default_value="0.0" />
+  <field id="gom_silica_dissolution_zfacsi_VINT" long_name="depth-integrated large particulate organic matter silica_dissolution proportion" unit="dimensionless*m" default_value="0.0" />
+  <field id="gom_silica_dissolution_znusil_VINT" long_name="depth-integrated large particulate organic matter silica_dissolution znusil" unit="dimensionless*m" default_value="0.0" />
   <field id="gom_silica_dissolution_gsi_sms_VINT" long_name="depth-integrated large particulate organic matter silica_dissolution particulate organic silicon sources-sinks" unit="mol Si L-1/s*m" default_value="0.0" />
   <field id="gom_silica_dissolution_gsi_w_VINT" long_name="depth-integrated large particulate organic matter silica_dissolution particulate organic silicon vertical velocity" unit="m/s*m" default_value="0.0" />
   <field id="gom_silica_dissolution_sil_sms_VINT" long_name="depth-integrated large particulate organic matter silica_dissolution silicate sources-sinks" unit="mol Si L-1/s*m" default_value="0.0" />
@@ -1381,6 +1406,8 @@
   <field id="phy_alkalinity_expressed_as_mole_equivalent_w_VINT" long_name="depth-integrated nanophytoplankton alkalinity_expressed_as_mole_equivalent vertical velocity" unit="m/s*m" default_value="0.0" />
   <field id="phy_oxy_sms_VINT" long_name="depth-integrated nanophytoplankton oxygen sources-sinks" unit="mol O2 L-1/s*m" default_value="0.0" />
   <field id="phy_oxy_w_VINT" long_name="depth-integrated nanophytoplankton oxygen vertical velocity" unit="m/s*m" default_value="0.0" />
+  <field id="phy_fer_sms_VINT" long_name="depth-integrated nanophytoplankton iron sources-sinks" unit="mol Fe L-1/s*m" default_value="0.0" />
+  <field id="phy_fer_w_VINT" long_name="depth-integrated nanophytoplankton iron vertical velocity" unit="m/s*m" default_value="0.0" />
   <field id="phy_quota_VINT" long_name="depth-integrated nanophytoplankton proxy of the N/C ratio" unit="mol N (mol C)-1*m" default_value="0.0" />
   <field id="phy_LN_VINT" long_name="depth-integrated nanophytoplankton nitrogen limitation term" unit="-*m" default_value="0.0" />
   <field id="phy_LP_VINT" long_name="depth-integrated nanophytoplankton phosphorus limitation term" unit="-*m" default_value="0.0" />
@@ -1438,6 +1465,9 @@
   <field id="dia_alkalinity_expressed_as_mole_equivalent_w_VINT" long_name="depth-integrated diatoms alkalinity_expressed_as_mole_equivalent vertical velocity" unit="m/s*m" default_value="0.0" />
   <field id="dia_oxy_sms_VINT" long_name="depth-integrated diatoms oxygen sources-sinks" unit="mol O2 L-1/s*m" default_value="0.0" />
   <field id="dia_oxy_w_VINT" long_name="depth-integrated diatoms oxygen vertical velocity" unit="m/s*m" default_value="0.0" />
+  <field id="dia_fer_sms_VINT" long_name="depth-integrated diatoms iron sources-sinks" unit="mol Fe L-1/s*m" default_value="0.0" />
+  <field id="dia_fer_w_VINT" long_name="depth-integrated diatoms iron vertical velocity" unit="m/s*m" default_value="0.0" />
+  <field id="dia_xksi_diag_VINT" long_name="depth-integrated diatoms instantaneous silicate half-saturation constant" unit="mol Si L-1*m" default_value="0.0" />
   <field id="dia_quota_VINT" long_name="depth-integrated diatoms proxy of the N/C ratio" unit="mol N (mol C)-1*m" default_value="0.0" />
   <field id="dia_LN_VINT" long_name="depth-integrated diatoms nitrogen limitation term" unit="-*m" default_value="0.0" />
   <field id="dia_LP_VINT" long_name="depth-integrated diatoms phosphorus limitation term" unit="-*m" default_value="0.0" />
@@ -1452,6 +1482,8 @@
   <field id="dia_Mu_VINT" long_name="depth-integrated diatoms realized growth rate" unit="s-1*m" default_value="0.0" />
   <field id="dia_Llight_VINT" long_name="depth-integrated diatoms light limitation term" unit="1*m" default_value="0.0" />
   <field id="dia_pcal_VINT" long_name="depth-integrated diatoms calcite production" unit="mol m-3 s-1*m" default_value="0.0" />
+  <field id="dia_zrespp_VINT" long_name="depth-integrated diatoms mort_1" unit="1*m" default_value="0.0" />
+  <field id="dia_ztortp_VINT" long_name="depth-integrated diatoms mort_2" unit="1*m" default_value="0.0" />
   <field id="carbonate_DIC_sms_VINT" long_name="depth-integrated carbonate dissolved inorganic carbon concentration sources-sinks" unit="mol C L-1/s*m" default_value="0.0" />
   <field id="carbonate_DIC_w_VINT" long_name="depth-integrated carbonate dissolved inorganic carbon concentration vertical velocity" unit="m/s*m" default_value="0.0" />
   <field id="carbonate_Alkalini_sms_VINT" long_name="depth-integrated carbonate alkalinity concentration sources-sinks" unit="mol L-1/s*m" default_value="0.0" />
@@ -1475,6 +1507,9 @@
   <field id="zoo_graz_VINT" long_name="depth-integrated microzooplankton grazing" unit="mol C m-3 s-1*m" default_value="0.0" />
   <field id="zoo_zfrac_VINT" long_name="depth-integrated microzooplankton fractionation of large POM" unit="mol C m-3 s-1*m" default_value="0.0" />
   <field id="zoo_pcal_VINT" long_name="depth-integrated microzooplankton calcite production" unit="mol m-3 s-1*m" default_value="0.0" />
+  <field id="zoo_grazp_VINT" long_name="depth-integrated microzooplankton phytopk grazing" unit="mol C m-3s-1*m" default_value="0.0" />
+  <field id="zoo_grazd_VINT" long_name="depth-integrated microzooplankton diatoms grazing" unit="mol C m-3s-1*m" default_value="0.0" />
+  <field id="zoo_quotan_diag_VINT" long_name="depth-integrated microzooplankton quotan diagnostic" unit="1*m" default_value="0.0" />
   <field id="zoo_no3_sms_VINT" long_name="depth-integrated microzooplankton nitrate sources-sinks" unit="mol C L-1/s*m" default_value="0.0" />
   <field id="zoo_no3_w_VINT" long_name="depth-integrated microzooplankton nitrate vertical velocity" unit="m/s*m" default_value="0.0" />
   <field id="zoo_nh4_sms_VINT" long_name="depth-integrated microzooplankton ammonium sources-sinks" unit="mol C L-1/s*m" default_value="0.0" />
@@ -1539,6 +1574,9 @@
   <field id="mes_graz_VINT" long_name="depth-integrated mesozooplankton grazing" unit="mol C m-3 s-1*m" default_value="0.0" />
   <field id="mes_zfrac_VINT" long_name="depth-integrated mesozooplankton fractionation of large POM" unit="mol C m-3 s-1*m" default_value="0.0" />
   <field id="mes_pcal_VINT" long_name="depth-integrated mesozooplankton calcite production" unit="mol m-3 s-1*m" default_value="0.0" />
+  <field id="mes_grazp_VINT" long_name="depth-integrated mesozooplankton phytopk grazing" unit="mol C m-3s-1*m" default_value="0.0" />
+  <field id="mes_grazd_VINT" long_name="depth-integrated mesozooplankton diatoms grazing" unit="mol C m-3s-1*m" default_value="0.0" />
+  <field id="mes_quotan_diag_VINT" long_name="depth-integrated mesozooplankton quotan diagnostic" unit="1*m" default_value="0.0" />
   <field id="mes_no3_sms_VINT" long_name="depth-integrated mesozooplankton nitrate sources-sinks" unit="mol C L-1/s*m" default_value="0.0" />
   <field id="mes_no3_w_VINT" long_name="depth-integrated mesozooplankton nitrate vertical velocity" unit="m/s*m" default_value="0.0" />
   <field id="mes_nh4_sms_VINT" long_name="depth-integrated mesozooplankton ammonium sources-sinks" unit="mol C L-1/s*m" default_value="0.0" />

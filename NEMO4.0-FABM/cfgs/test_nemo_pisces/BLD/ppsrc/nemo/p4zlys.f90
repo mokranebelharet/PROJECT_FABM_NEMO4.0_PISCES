@@ -69,7 +69,7 @@ CONTAINS
       REAL(wp) ::   zdispot, zfact, zcalcon
       REAL(wp) ::   zomegaca, zexcess, zexcess0
       CHARACTER (len=25) ::   charout
-      REAL(wp), DIMENSION(jpi,jpj,jpk) ::   zco3, zcaldiss, zhinit, zhi, zco3sat
+      REAL(wp), DIMENSION(jpi,jpj,jpk) ::   zco3, zcaldiss, zhinit, zhi, zco3sat, zomegaca_o
       !!---------------------------------------------------------------------
       !
       IF( ln_timing )  CALL timing_start('p4z_lys')
@@ -109,6 +109,9 @@ CONTAINS
                zomegaca = ( zcalcon * zco3(ji,jj,jk) ) / ( aksp(ji,jj,jk) * zfact + rtrn )
                zco3sat(ji,jj,jk) = aksp(ji,jj,jk) * zfact / ( zcalcon + rtrn )
 
+               ! Mokrane : create zomegaca_o to store zomegaca
+               zomegaca_o(ji,jj,jk) = zomegaca
+
                ! SET DEGREE OF UNDER-/SUPERSATURATION
                excess(ji,jj,jk) = 1._wp - zomegaca
                zexcess0 = MAX( 0., excess(ji,jj,jk) )
@@ -128,6 +131,9 @@ CONTAINS
             END DO
          END DO
       END DO
+
+      !Mokrane
+       CALL iom_put("zomegaca",zomegaca_o(:,:,:) * tmask(:,:,:))
       !
 
       IF( lk_iomput .AND. knt == nrdttrc ) THEN

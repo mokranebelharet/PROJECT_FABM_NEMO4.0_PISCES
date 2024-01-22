@@ -261,6 +261,32 @@
        <field id="pe3"         long_name="optics daily mean PAR in red band"   unit="W m-2"  grid_ref="grid_T_3D" />
        <field id="zchl"        long_name="total chlorophyll"                    unit="unknown"  grid_ref="grid_T_3D" />
 
+       <field id="zwsink"     long_name="sinking velocity"                    unit="m s-1"  grid_ref="grid_T_3D" />
+
+       <field id="zsiremin"        long_name="lambda si star"                    unit="unknown"  grid_ref="grid_T_3D" />
+       <field id="zosil"        long_name="zosil"                    unit="unknown"  grid_ref="grid_T_3D" />
+       <field id="zfacsib"        long_name="zfacsib"                    unit="dimensionless"  grid_ref="grid_T_3D" />
+       <field id="zfacsi"        long_name="zfacsi"                    unit="dimensionless"  grid_ref="grid_T_3D" />
+       <field id="znusil"        long_name="znusil"                    unit="dimensionless"  grid_ref="grid_T_3D" />
+
+       <field id="zomegaca"     long_name="zomegaca"     unit="dimensionless"  grid_ref="grid_T_3D" />
+       <field id="zresp"   long_name="zresp"  unit="1"  grid_ref="grid_T_3D" />
+       <field id="ztortp"       long_name="ztortp"   unit="1"  grid_ref="grid_T_3D" />
+       <field id="wsbio4"       long_name="wsbio4"   unit="1"  grid_ref="grid_T_3D" />
+       <field id="xksi"       long_name="diatoms silicate_half_saturation silicate half saturation"   unit="mol Si L-1" />
+
+       <field id="zlim1"       long_name="diatoms nitrogen limitation term" unit="-" grid_ref="grid_T_3D" />
+       <field id="zlim2"       long_name="diatoms phosphorus limitation term" unit="-" grid_ref="grid_T_3D" />
+       <field id="zlim3"       long_name="diatoms silicate limitation term" unit="-" grid_ref="grid_T_3D" />
+       <field id="zlim4"       long_name="diatoms iron limitation term" unit="-" grid_ref="grid_T_3D" />
+
+       <field id="graz1p" long_name="microzooplankton grazing on nanophytoplankton" unit="mol C m-3s-1" grid_ref="grid_T_3D" />
+       <field id="graz1d" long_name="microzooplankton grazing on diatoms" unit="mol C m-3s-1" grid_ref="grid_T_3D" />
+       <field id="graz2p" long_name="mesozooplankton grazing on nanophytoplankton" unit="mol C m-3s-1" grid_ref="grid_T_3D" />
+       <field id="graz2d" long_name="mesozooplankton grazing on diatoms" unit="mol C m-3s-1" grid_ref="grid_T_3D" />
+
+       <field id="quotan"  long_name="mesozooplankton quotan diagnostic"  unit="1" grid_ref="grid_T_3D" />
+
        <!-- PISCES tracers trends -->
        <field id="INTdtAlk"    long_name="Vertically int. of change of alkalinity"             unit="mol/m2/s"                       />
        <field id="INTdtDIC"    long_name="Vertically int. of change of dissic    "             unit="mol/m2/s"                       />

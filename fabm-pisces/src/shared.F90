@@ -18,7 +18,7 @@ module pisces_shared
    real(rk), parameter :: rday    = 24._rk*60._rk*60._rk      !: day                                [s]
    real(rk), parameter :: r1_rday = 1._rk / rday
 
-   real(rk), parameter :: xstep = r1_rday
+   real(rk), parameter :: xstep = r1_rday !0.0416666  
 
    real(rk), parameter :: nyear_len = 365._rk  ! Jorn - TODO should be made dynamic to account for leap years, different calendars, etc.
 

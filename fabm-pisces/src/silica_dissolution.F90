@@ -12,7 +12,7 @@ module pisces_silica_dissolution
 
    type, extends(type_base_model) :: type_pisces_silica_dissolution
       type (type_state_variable_id)      :: id_gsi, id_sil
-      type (type_diagnostic_variable_id) :: id_remin
+      type (type_diagnostic_variable_id) :: id_remin , id_zsiremin , id_zfacsib, id_zfacsi, id_znusil
       type (type_dependency_id)          :: id_tem, id_gdept_n, id_ws, id_e3t_n
       type (type_surface_dependency_id)  :: id_hmld, id_heup_01
       real(rk) :: xsilab, xsiremlab, xsirem
@@ -35,6 +35,13 @@ contains
 
       call self%register_diagnostic_variable(self%id_remin, 'remin', 'mol Si L-1 s-1', 'rate', source=source_do_column)
 
+      !--------------- Mokrane ---------------------------------------
+       call self%register_diagnostic_variable(self%id_zsiremin,'zsiremin','d-1', 'Lambda psi star' ,source=source_do_column)
+       call self%register_diagnostic_variable(self%id_zfacsib,'zfacsib','dimensionless','proportion of the most labile phase in PSi', source=source_do_column)
+       call self%register_diagnostic_variable(self%id_zfacsi,'zfacsi','dimensionless','proportion ', source=source_do_column)
+       call self%register_diagnostic_variable(self%id_znusil,'znusil','dimensionless','znusil',source=source_do_column)
+      !----------------------------------------------------------------
+
       call self%register_state_dependency(self%id_gsi, 'gsi', 'mol Si L-1', 'particulate organic silicon')
       call self%register_state_dependency(self%id_sil, 'sil', 'mol Si L-1', 'silicate')
       call self%register_dependency(self%id_ws, 'ws', 'm d-1', 'sinking velocity of particulate organic silicon')
@@ -56,6 +63,7 @@ contains
       real(rk) :: gdept_n, tem, ws, sil, e3t_n
       real(rk) :: ztkel, sio3eq, zsatur, zsatur2, znusil, zfacsib, zfacsi, zsiremin
       real(rk) :: gsi, zosil
+      !real(rk), parameter :: xstep = 0.0416666_rk
 
       _GET_SURFACE_(self%id_heup_01, heup_01)
       _GET_SURFACE_(self%id_hmld, hmld)
@@ -83,11 +91,18 @@ contains
             zfacsib = zfacsib * EXP( -0.5 * ( self%xsiremlab - self%xsirem )    &
             &                   * znusil * e3t_n / ws )
          ENDIF
-         zsiremin = ( self%xsiremlab * zfacsi + self%xsirem * ( 1. - zfacsi ) ) * xstep * znusil
+         zsiremin = ( self%xsiremlab * zfacsi + self%xsirem * ( 1. - zfacsi ) ) * znusil  * xstep   !z2dt
 
          _GET_(self%id_gsi, gsi)
 
          zosil    = zsiremin * gsi
+
+          !------------------ Mokrane ----------------------
+           _SET_DIAGNOSTIC_(self%id_zsiremin, zsiremin)
+           _SET_DIAGNOSTIC_(self%id_zfacsib,zfacsib)
+           _SET_DIAGNOSTIC_(self%id_zfacsi,zfacsi)
+           _SET_DIAGNOSTIC_(self%id_znusil,znusil)
+          !------------------------------------------------
          !
          _ADD_SOURCE_(self%id_gsi, - zosil)
          _ADD_SOURCE_(self%id_sil, + zosil)

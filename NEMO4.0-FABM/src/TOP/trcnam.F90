@@ -56,7 +56,7 @@ CONTAINS
       !!---------------------------------------------------------------------
       !
       IF( .NOT.l_offline )   CALL trc_nam_run     ! Parameters of the run                                  
-      !               
+      !
       CALL trc_nam_trc                            ! passive tracer informations
       !                                        
       IF( ln_rsttr                     )   ln_trcdta = .FALSE.   ! restart : no need of clim data

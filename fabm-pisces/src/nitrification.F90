@@ -54,7 +54,7 @@ contains
       real(rk) :: no3, nh4, nitrfac, emoy, fr_i, hmld, gdepw_n
       real(rk) :: zonitr, zdenitnh4
 
-      real(rk), parameter :: xstep = r1_rday
+      real(rk), parameter :: xstep  = r1_rday !0.0416666_rk !r1_rday 
 
       _LOOP_BEGIN_
          _GET_(self%id_no3, no3)            ! nitrate (in carbon units! mol C L-1)

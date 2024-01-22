@@ -92,6 +92,7 @@
 !-----------------------------------------------------------------------
 &namtrc_snk      !  sedimentation of particles
 !-----------------------------------------------------------------------
+   nitermax      =  1   !  number of iterations for sedimentation
 /
 !-----------------------------------------------------------------------
 &namtrc_dmp      !   passive tracer newtonian damping   

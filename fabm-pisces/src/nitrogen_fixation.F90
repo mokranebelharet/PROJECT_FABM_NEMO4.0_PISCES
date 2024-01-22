@@ -68,6 +68,7 @@ contains
 
       real(rk) :: nh4, no3, po4, biron, ztemp, etot_ndcy, fr_i, doc
       real(rk) :: zlight, zmudia, xdianh4, xdiano3, zlim, zfact, ztrfer, ztrpo4, ztrdp, nitrpot
+      !real(rk), parameter :: xstep = 0.0416666_rk
 
       _LOOP_BEGIN_
          _GET_(self%id_nh4, nh4)

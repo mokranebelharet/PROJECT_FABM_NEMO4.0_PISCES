@@ -220,6 +220,7 @@ contains
       _DECLARE_ARGUMENTS_DO_BOTTOM_
 
       real(rk) :: ws, e3t_n, c, fe, si, cal
+      !real(rk), parameter :: xstep = 0.0416666_rk
 
       _BOTTOM_LOOP_BEGIN_
          _GET_(self%id_e3t_n, e3t_n)
@@ -393,7 +394,7 @@ contains
             ztremint =  MAX(0., remint / ( alphat + rtrn) )
          ENDIF
          zremi = MIN( self%xremip , ztremint )
-         _SET_DIAGNOSTIC_(self%id_zremi, zremi * xstep * tgfunc)
+         _SET_DIAGNOSTIC_(self%id_zremi, zremi * xstep * tgfunc) 
 
          DO jn = 1, self%jcpoc
             _SET_DIAGNOSTIC_(self%id_alpha(jn), alpha(jn))

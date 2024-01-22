@@ -50,6 +50,7 @@ contains
 
       real(rk) :: doc, poc, goc, sfe, xdiss
       real(rk) :: zfact, zagg1, zagg2, zagg3, zagg4, zagg, zaggfe, zaggdoc, zaggdoc2, zaggdoc3
+      !real(rk), parameter :: xstep = 0.0416666_rk
 
       _LOOP_BEGIN_
 

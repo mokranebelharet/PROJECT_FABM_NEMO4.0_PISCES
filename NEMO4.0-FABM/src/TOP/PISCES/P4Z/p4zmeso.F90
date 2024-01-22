@@ -71,7 +71,7 @@ CONTAINS
       REAL(wp) :: zrespz, ztortz, zgrazd, zgrazz, zgrazpof
       REAL(wp) :: zgrazn, zgrazpoc, zgraznf, zgrazf
       REAL(wp) :: zgrazfffp, zgrazfffg, zgrazffep, zgrazffeg
-      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zgrazing2, zfezoo2, zz2ligprod
+      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zgrazing2, zfezoo2, zz2ligprod, grazp, grazd
       CHARACTER (len=25) :: charout
       !!---------------------------------------------------------------------
       !
@@ -101,6 +101,8 @@ CONTAINS
                ! -------------------------------------------------------------------------------
                zcompaph  = MAX( ( trb(ji,jj,jk,jpphy) - xthresh2phy ), 0.e0 ) &
                   &      * MIN(1., MAX( 0., ( quotan(ji,jj,jk) - 0.2) / 0.3 ) )
+
+                CALL iom_put("quotan", quotan(:,:,:) * tmask(:,:,:))
 
                !   Mesozooplankton grazing
                !   ------------------------
@@ -224,13 +226,22 @@ CONTAINS
                !
                zprcaca = part2 * zprcaca
                tra(ji,jj,jk,jpdic) = tra(ji,jj,jk,jpdic) + zgrazcal - zprcaca
-               tra(ji,jj,jk,jptal) = tra(ji,jj,jk,jptal) - 2. * ( zgrazcal + zprcaca )
+               tra(ji,jj,jk,jptal) = tra(ji,jj,jk,jptal) + 2. * ( zgrazcal - zprcaca ) ! Mokrane : modified to match with the fabmized version
                tra(ji,jj,jk,jpcal) = tra(ji,jj,jk,jpcal) - zgrazcal + zprcaca
+
+
+               ! Mokrane : grazing for diagnostics
+               grazp(ji,jj,jk) = zgrazn/xstep
+               grazd(ji,jj,jk) = zgrazd/xstep
             END DO
          END DO
       END DO
       !
       IF( lk_iomput .AND. knt == nrdttrc ) THEN
+
+         CALL iom_put( "graz2p" , grazp(:,:,:) * tmask(:,:,:)) !-- Mokrane -- 
+         CALL iom_put( "graz2d" , grazd(:,:,:) * tmask(:,:,:)) !-- Mokrane --
+
          CALL iom_put( "PCAL"  , prodcal(:,:,:) * 1.e+3  * rfact2r * tmask(:,:,:) )  !  Calcite production 
          IF( iom_use("GRAZ2") ) THEN  !   Total grazing of phyto by zooplankton
            zgrazing2(:,:,jpk) = 0._wp ;  CALL iom_put( "GRAZ2" , zgrazing2(:,:,:) * 1.e+3  * rfact2r * tmask(:,:,:) ) 

@@ -55,6 +55,7 @@ MODULE p4zlim
    REAL(wp), PUBLIC ::  qdfelim     !:  optimal Fe quota for diatoms
    REAL(wp), PUBLIC ::  caco3r      !:  mean rainratio 
 
+
    !!* Phytoplankton limitation terms
    REAL(wp), PUBLIC, ALLOCATABLE, SAVE, DIMENSION(:,:,:)  ::   xnanono3   !: ???
    REAL(wp), PUBLIC, ALLOCATABLE, SAVE, DIMENSION(:,:,:)  ::   xdiatno3   !: ???
@@ -101,6 +102,9 @@ CONTAINS
       REAL(wp) ::   z1_trbdia, z1_trbphy, ztem1, ztem2, zetot1, zetot2
       REAL(wp) ::   zdenom, zratio, zironmin
       REAL(wp) ::   zconc1d, zconc1dnh4, zconc0n, zconc0nnh4   
+      ! --- Mokrane : declare diag variables -----
+      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zlim1_, zlim2_, zlim3_, zlim4_
+      !--------------------------------------------
       !!---------------------------------------------------------------------
       !
       IF( ln_timing )   CALL timing_start('p4z_lim')
@@ -114,7 +118,7 @@ CONTAINS
                zno3    = trb(ji,jj,jk,jpno3) / 40.e-6
                zferlim = MAX( 3e-11 * zno3 * zno3, 5e-12 )
                zferlim = MIN( zferlim, 7e-11 )
-               trb(ji,jj,jk,jpfer) = MAX( trb(ji,jj,jk,jpfer), zferlim )
+               !trb(ji,jj,jk,jpfer) = MAX( trb(ji,jj,jk,jpfer), zferlim )
 
                ! Computation of a variable Ks for iron on diatoms taking into account
                ! that increasing biomass is made of generally bigger cells
@@ -178,9 +182,23 @@ CONTAINS
                xlimdfe (ji,jj,jk) = MIN( 1., zlim4 )
                xlimdia (ji,jj,jk) = MIN( zlim1, zlim2, zlim3, zlim4 )
                xlimsi  (ji,jj,jk) = MIN( zlim1, zlim2, zlim4 )
+
+
+               ! --- Mokrane : save zlim1,2,3,4 for diatoms ------
+              zlim1_(ji,jj,jk) = zratio
+              zlim2_(ji,jj,jk) = zironmin
+              zlim3_(ji,jj,jk) = zlim3
+              zlim4_(ji,jj,jk) = zlim4
+    
            END DO
          END DO
       END DO
+
+      CALL iom_put("xksi",xksi(:,:) * tmask(:,:,1))
+      CALL iom_put("zlim1",zlim1_(:,:,:) * tmask(:,:,:))
+      CALL iom_put("zlim2",zlim2_(:,:,:) * tmask(:,:,:))
+      CALL iom_put("zlim3",zlim3_(:,:,:) * tmask(:,:,:))
+      CALL iom_put("zlim4",zlim4_(:,:,:) * tmask(:,:,:))
 
       ! Compute the fraction of nanophytoplankton that is made of calcifiers
       ! --------------------------------------------------------------------

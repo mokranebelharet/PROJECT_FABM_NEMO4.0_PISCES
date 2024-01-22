@@ -114,6 +114,7 @@ CONTAINS
       !   -----------------------------------------------------
       CALL trc_sink( kt, wsbio3, sinking , jppoc, rfact2 )
       CALL trc_sink( kt, wsbio3, sinkfer , jpsfe, rfact2 )
+      CALL iom_put("wsbio4",wsbio4(:,:,:) * tmask(:,:,:))
       CALL trc_sink( kt, wsbio4, sinking2, jpgoc, rfact2 )
       CALL trc_sink( kt, wsbio4, sinkfer2, jpbfe, rfact2 )
       CALL trc_sink( kt, wsbio4, sinksil , jpgsi, rfact2 )

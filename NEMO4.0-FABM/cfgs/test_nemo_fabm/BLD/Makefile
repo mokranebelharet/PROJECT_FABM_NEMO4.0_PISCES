@@ -1816,10 +1816,10 @@ p4zmicro.o: $(FCM_PPSRCDIR)/nemo/p4zmicro.f90 FFLAGS__nemo__p4zmicro.flags iom.o
 FFLAGS__nemo__p4zmort.flags: FFLAGS__nemo.flags
 	touch $(FCM_FLAGSDIR)/$@
 
-p4zmort.done: p4zmort.o oce_trc.done p4zlim.done p4zprod.done prtctl_trc.done sms_pisces.done trc.done
+p4zmort.done: p4zmort.o iom.done oce_trc.done p4zlim.done p4zprod.done prtctl_trc.done sms_pisces.done trc.done
 	touch $(FCM_DONEDIR)/$@
 
-p4zmort.o: $(FCM_PPSRCDIR)/nemo/p4zmort.f90 FFLAGS__nemo__p4zmort.flags oce_trc.o p4zlim.o p4zprod.o prtctl_trc.o sms_pisces.o trc.o
+p4zmort.o: $(FCM_PPSRCDIR)/nemo/p4zmort.f90 FFLAGS__nemo__p4zmort.flags iom.o oce_trc.o p4zlim.o p4zprod.o prtctl_trc.o sms_pisces.o trc.o
 	fcm_internal compile:F nemo $< $@
 
 FFLAGS__nemo__p4zopt.flags: FFLAGS__nemo.flags
@@ -3099,10 +3099,10 @@ trcsbc.o: $(FCM_PPSRCDIR)/nemo/trcsbc.f90 FFLAGS__nemo__trcsbc.flags iom.o oce_t
 FFLAGS__nemo__trcsink.flags: FFLAGS__nemo.flags
 	touch $(FCM_FLAGSDIR)/$@
 
-trcsink.done: trcsink.o lib_mpp.done oce_trc.done trc.done
+trcsink.done: trcsink.o iom.done lib_mpp.done oce_trc.done trc.done
 	touch $(FCM_DONEDIR)/$@
 
-trcsink.o: $(FCM_PPSRCDIR)/nemo/trcsink.f90 FFLAGS__nemo__trcsink.flags lib_mpp.o oce_trc.o trc.o
+trcsink.o: $(FCM_PPSRCDIR)/nemo/trcsink.f90 FFLAGS__nemo__trcsink.flags iom.o lib_mpp.o oce_trc.o trc.o
 	fcm_internal compile:F nemo $< $@
 
 FFLAGS__nemo__trcsms.flags: FFLAGS__nemo.flags

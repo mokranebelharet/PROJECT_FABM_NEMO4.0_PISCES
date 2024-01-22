@@ -26,6 +26,7 @@ MODULE p4zmort
    USE p4zprod         ! Primary productivity 
    USE p4zlim          ! Phytoplankton limitation terms
    USE prtctl_trc      ! print control for debugging
+   USE iom             ! I/O manager
 
    IMPLICIT NONE
    PRIVATE
@@ -78,6 +79,7 @@ CONTAINS
       REAL(wp) ::   zfactfe, zfactch, zprcaca, zfracal
       REAL(wp) ::   ztortp , zrespp , zmortp 
       CHARACTER (len=25) ::   charout
+      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zresp_o , ztortp_o
       !!---------------------------------------------------------------------
       !
       IF( ln_timing )   CALL timing_start('p4z_nano')
@@ -103,6 +105,9 @@ CONTAINS
 
                zmortp = zrespp + ztortp
 
+               !zresp_o(ji,jj,jk) = zrespp/xstep
+               !ztortp_o(ji,jj,jk) = ztortp/xstep
+
                !   Update the arrays TRA which contains the biological sources and sinks
 
                zfactfe = trb(ji,jj,jk,jpnfe)/(trb(ji,jj,jk,jpphy)+rtrn)
@@ -127,6 +132,8 @@ CONTAINS
             END DO
          END DO
       END DO
+      !CALL iom_put("zresp",zresp_o(:,:,:) * tmask(:,:,:))
+      !CALL iom_put("ztortp",ztortp_o(:,:,:) * tmask(:,:,:))
       !
        IF(ln_ctl)   THEN  ! print mean trends (used for debugging)
          WRITE(charout, FMT="('nano')")
@@ -152,6 +159,7 @@ CONTAINS
       REAL(wp) ::   zrespp2, ztortp2, zmortp2
       REAL(wp) ::   zlim2, zlim1
       CHARACTER (len=25) ::   charout
+      REAL(wp), DIMENSION(jpi,jpj,jpk) :: zresp_o , ztortp_o
       !!---------------------------------------------------------------------
       !
       IF( ln_timing )   CALL timing_start('p4z_diat')
@@ -182,6 +190,10 @@ CONTAINS
                ztortp2 = mprat2 * xstep * trb(ji,jj,jk,jpdia)  / ( xkmort + trb(ji,jj,jk,jpdia) ) * zcompadi 
 
                zmortp2 = zrespp2 + ztortp2
+               !--------- Mokrane ----------------
+               zresp_o(ji,jj,jk) = zrespp2/xstep
+               ztortp_o(ji,jj,jk) = ztortp2/xstep
+               !-----------------------------------
 
                !   Update the arrays tra which contains the biological sources and sinks
                !   ---------------------------------------------------------------------
@@ -202,6 +214,10 @@ CONTAINS
             END DO
          END DO
       END DO
+      !------------- Mokrane ------------------------------
+      CALL iom_put("zresp",zresp_o(:,:,:) * tmask(:,:,:))
+      CALL iom_put("ztortp",ztortp_o(:,:,:) * tmask(:,:,:))
+      !-----------------------------------------------------
       !
       IF(ln_ctl) THEN      ! print mean trends (used for debugging)
          WRITE(charout, FMT="('diat')")

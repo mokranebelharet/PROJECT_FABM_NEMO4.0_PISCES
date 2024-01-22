@@ -98,7 +98,7 @@ contains
       real(rk) :: zremik, zolimit, zolimi, zammonic, denitr, zoxyremc
       real(rk) :: tgfunc, zdep, zdepmin, zdepprod, zdepeff, zbactfer, blim
 
-      real(rk), parameter :: xstep = r1_rday
+      real(rk), parameter :: xstep = r1_rday  !0.0416666_rk
 
       _LOOP_BEGIN_
          _GET_(self%id_no3, no3)

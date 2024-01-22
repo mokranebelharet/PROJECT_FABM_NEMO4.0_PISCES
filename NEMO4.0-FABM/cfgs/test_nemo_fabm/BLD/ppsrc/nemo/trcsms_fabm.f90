@@ -141,7 +141,7 @@ CONTAINS
 
       CALL iom_put("tra_after", tra(:,:,:,jp_fabm0) * tmask(:,:,:))
 
-      !CALL compute_vertical_movement( kt, nn_adv )
+      CALL compute_vertical_movement( kt, nn_adv )
 
       CALL st2d_fabm_nxt( kt )
 

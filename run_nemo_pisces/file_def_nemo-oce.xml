@@ -27,8 +27,8 @@
       <file_group id="1ts" output_freq="1ts"  output_level="10" enabled=".TRUE.">
 
 
-       <file id="file1" name_suffix="_grid_T" description="ocean T grid variables" >
-          <!--field field_ref="toce"         name="votemper"  />
+       <!--file id="file1" name_suffix="_grid_T" description="ocean T grid variables" >
+          <field field_ref="toce"         name="votemper"  />
           <field field_ref="soce"         name="vosaline"  />
           <field field_ref="sst"          name="sosstsst"  />
           <field field_ref="sss"          name="sosaline"  />
@@ -38,9 +38,9 @@
           <field field_ref="saltflx"      name="sosfldow"  />
           <field field_ref="qt"           name="sohefldo"  />
           <field field_ref="mldr10_1"     name="somxl010"  />
-          <field field_ref="mldkz5"       name="somixhgt"  /-->
+          <field field_ref="mldkz5"       name="somixhgt"  />
           <field field_ref="hmld"         name="hmld"  />
-        </file>
+        </file-->
 
 
        <!--file id="file2" name_suffix="_grid_U" description="ocean U grid variables" >
@@ -53,11 +53,11 @@
           <field field_ref="vtau"         name="tauvo"    />
         </file-->
 
-        <file id="file4" name_suffix="_grid_W" description="ocean W grid variables" >
+        <!--file id="file4" name_suffix="_grid_W" description="ocean W grid variables" >
           <field field_ref="e3w" />
           <field field_ref="woce"         name="wo"       />
           <field field_ref="avt"          name="avt"   />
-        </file >
+        </file -->
 
         <file id="file5" name_suffix="_ptrc_T" description="Pisces variables" >
           <field field_ref="PHY"     name="nano_phyto"  />
@@ -89,7 +89,7 @@
 
         <file id="file6" name_suffix="_diad_T" description="additional lobster diagnostics" >
 
-          <field field_ref="PAR"    name="PAR" />
+          <!--field field_ref="PAR"    name="PAR" />
           <field id="PARDM"   name="etot_ndcy" />
           <field field_ref="xdiss"  name="shear_rate" />
           <field field_ref="Heup"  name="heup" />
@@ -100,7 +100,38 @@
           <field field_ref="pe1"  name="pe1" />
           <field field_ref="pe2"  name="pe2" />
           <field field_ref="pe3"  name="pe3" />
-          <field field_ref="zchl"  name="Tchl" />
+          <field field_ref="zchl"  name="Tchl" /-->
+
+          <!--field field_ref="zsiremin"      name="zsiremin"/>
+          <field field_ref="zosil"     name="zosil" />
+          <field field_ref="zfacsib"        name="zfacsib"/>
+          <field field_ref="zfacsi"        name="zfacsi"  />
+          <field field_ref="znusil"        name="znusil"  />
+          <field field_ref="zomegaca"    name="zomegaca"  /-->
+
+          <!--field field_ref="xfracal"    name="xfracal"  />
+          <field field_ref="zresp"   name="zresp"  />
+          <field field_ref="ztortp"  name="ztortp" />
+          <field field_ref="wsbio4"  name="wsbio4" />
+          <field field_ref="xksi"   name="xksi" /-->
+
+          <field field_ref="MuD"  name="MuD"  />
+          <field field_ref="TPP"  name="TPP_dia" />
+
+          <!--field field_ref="zlim1"  name="zlim1" />
+          <field field_ref="zlim2"  name="zlim2" />
+          <field field_ref="zlim3"  name="zlim3" />
+          <field field_ref="zlim4"  name="zlim4" /-->
+
+          <!--field field_ref="PFeD"   name="PFeD" /-->
+
+          <field field_ref="graz1p"  name="graz1p" />
+          <field field_ref="graz1d"  name="graz1d" />
+          <field field_ref="graz2p"  name="graz2p" />
+          <field field_ref="graz2d"  name="graz2d" />
+          <!--field field_ref="quotan"  name="quotan" /-->
+
+
 
        </file>
 
